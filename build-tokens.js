@@ -6,22 +6,22 @@ register(StyleDictionary);
 
 const BUILDS = [
   {
-    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/base.json', 'designtocode-test/brand-A/light.json', 'designtocode-test/theme.json'],
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/base.json', 'designtocode-test/brand-A/light.json'],
     destination: 'brand-a-light.css',
     selector: ':root, [data-brand="brand-a"][data-theme="light"]'
   },
   {
-    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/base.json', 'designtocode-test/brand-A/dark.json', 'designtocode-test/theme.json'],
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/base.json', 'designtocode-test/brand-A/dark.json'],
     destination: 'brand-a-dark.css',
     selector: '[data-brand="brand-a"][data-theme="dark"]'
   },
   {
-    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/base.json', 'designtocode-test/brand-B/light.json', 'designtocode-test/theme.json'],
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/base.json', 'designtocode-test/brand-B/light.json'],
     destination: 'brand-b-light.css',
     selector: '[data-brand="brand-b"][data-theme="light"]'
   },
   {
-    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/base.json', 'designtocode-test/brand-B/dark.json', 'designtocode-test/theme.json'],
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/base.json', 'designtocode-test/brand-B/dark.json'],
     destination: 'brand-b-dark.css',
     selector: '[data-brand="brand-b"][data-theme="dark"]'
   }
@@ -55,7 +55,7 @@ const chunks = await Promise.all(
 );
 await writeFile('build/variables.css', chunks.join('\n'));
 
-// Typography utility classes (shared — theme.json is brand-agnostic)
+// Typography utility classes — generated from brand-A/base.json (shared structure)
 const toKebab = (s) =>
   s.replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/[\s_]+/g, '-').toLowerCase();
 
@@ -72,7 +72,7 @@ function collectTypographyTokens(node, path = []) {
   return found;
 }
 
-const theme = JSON.parse(await readFile('designtocode-test/theme.json', 'utf8'));
+const theme = JSON.parse(await readFile('designtocode-test/brand-A/base.json', 'utf8'));
 const typographyTokens = collectTypographyTokens(theme);
 
 const cssPropMap = {
