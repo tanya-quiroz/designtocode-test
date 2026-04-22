@@ -11,6 +11,7 @@
     "dev": "npm run build:tokens && npm run serve"
   },
   "devDependencies": {
+    "@storybook/addon-themes": "^8.6.18",
     "@storybook/html-vite": "^8.6.0",
     "@tokens-studio/sd-transforms": "^1.2.0",
     "react": "^19.2.5",
