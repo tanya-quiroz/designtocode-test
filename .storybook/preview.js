@@ -1,6 +1,4 @@
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
-import '../build/variables.css';
-import '../build/typography.css';
 
 const themeBackgroundStyle = `
   html, body {
