@@ -1,15 +1,16 @@
 const buttonStyles = `
-  .btn {
-    background: var(--button-background);
-    color: var(--button-text);
+  .btn-primary {
+    background: var(--button-primary-background);
+    color: var(--button-primary-text);
     border: none;
-    border-radius: var(--button-radius);
-    padding: var(--button-padding-y) var(--button-padding-x);
-    font-size: var(--button-font-size);
+    border-radius: var(--button-border-radius);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-sizes-body);
+    font-family: var(--font-families-body);
     cursor: pointer;
-    transition: background 0.15s ease;
+    transition: filter 0.15s ease;
   }
-  .btn:hover { background: var(--button-background-hover); }
+  .btn-primary:hover { filter: brightness(0.92); }
 `;
 
 function ensureStyles() {
@@ -30,7 +31,7 @@ export default {
 const Template = ({ label }) => {
   ensureStyles();
   const btn = document.createElement('button');
-  btn.className = 'btn';
+  btn.className = 'btn-primary';
   btn.textContent = label;
   return btn;
 };

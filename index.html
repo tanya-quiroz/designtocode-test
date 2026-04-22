@@ -7,12 +7,13 @@
   <link rel="stylesheet" href="build/variables.css">
   <style>
     body {
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: var(--font-families-body), system-ui, sans-serif;
       display: grid;
       place-items: center;
       min-height: 100vh;
       margin: 0;
-      background: #f8f9fa;
+      background: var(--bg-muted);
+      color: var(--fg-default);
     }
 
     .stage {
@@ -20,31 +21,32 @@
     }
 
     .stage h1 {
-      margin-bottom: 2rem;
-      color: #111827;
-      font-weight: 600;
+      margin-bottom: var(--spacing-lg);
+      font-family: var(--font-families-heading);
+      font-weight: var(--font-weights-heading-bold);
     }
 
-    .btn {
-      background: var(--button-background);
-      color: var(--button-text);
+    .btn-primary {
+      background: var(--button-primary-background);
+      color: var(--button-primary-text);
       border: none;
-      border-radius: var(--button-radius);
-      padding: var(--button-padding-y) var(--button-padding-x);
-      font-size: var(--button-font-size);
+      border-radius: var(--button-border-radius);
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-size: var(--font-sizes-body);
+      font-family: var(--font-families-body);
       cursor: pointer;
-      transition: background 0.15s ease;
+      transition: filter 0.15s ease;
     }
 
-    .btn:hover {
-      background: var(--button-background-hover);
+    .btn-primary:hover {
+      filter: brightness(0.92);
     }
   </style>
 </head>
 <body>
   <div class="stage">
     <h1>Button from design tokens</h1>
-    <button class="btn">Primary Button</button>
+    <button class="btn-primary">Primary Button</button>
   </div>
 </body>
 </html>

@@ -4,7 +4,11 @@ import { register } from '@tokens-studio/sd-transforms';
 register(StyleDictionary);
 
 const sd = new StyleDictionary({
-  source: ['tokens/global.json'],
+  source: [
+    'designtocode-test/core.json',
+    'designtocode-test/light.json',
+    'designtocode-test/theme.json'
+  ],
   preprocessors: ['tokens-studio'],
   platforms: {
     css: {
@@ -14,8 +18,7 @@ const sd = new StyleDictionary({
       files: [
         {
           destination: 'variables.css',
-          format: 'css/variables',
-          options: { outputReferences: true }
+          format: 'css/variables'
         }
       ]
     }
