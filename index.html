@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Design-to-Code Button Test</title>
   <link rel="stylesheet" href="build/variables.css">
+  <link rel="stylesheet" href="build/typography.css">
   <style>
     body {
       font-family: var(--font-families-body), system-ui, sans-serif;
@@ -23,11 +24,6 @@
 
     .stage h1 {
       margin-bottom: var(--spacing-lg);
-      font-family: var(--typography-h1-bold-font-family);
-      font-weight: var(--typography-h1-bold-font-weight);
-      font-size: var(--typography-h1-bold-font-size);
-      line-height: var(--typography-h1-bold-line-height);
-      letter-spacing: var(--typography-h1-bold-letter-spacing);
     }
 
     .btn-primary {
@@ -71,7 +67,7 @@
   </button>
 
   <div class="stage">
-    <h1>Button from design tokens</h1>
+    <h1 class="typography-h1-bold">Button from design tokens</h1>
     <button class="btn-primary">Primary Button</button>
   </div>
 
