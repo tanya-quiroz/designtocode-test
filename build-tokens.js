@@ -8,6 +8,13 @@ async function buildTheme({ sources, destination, selector }) {
   const sd = new StyleDictionary({
     source: sources,
     preprocessors: ['tokens-studio'],
+    expand: {
+      typesMap: {
+        typography: true,
+        boxShadow: true,
+        border: true
+      }
+    },
     platforms: {
       css: {
         transformGroup: 'tokens-studio',
