@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +12,9 @@
       place-items: center;
       min-height: 100vh;
       margin: 0;
-      background: var(--bg-muted);
+      background: var(--bg-default);
       color: var(--fg-default);
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     .stage {
@@ -35,18 +36,65 @@
       font-size: var(--font-sizes-body);
       font-family: var(--font-families-body);
       cursor: pointer;
-      transition: filter 0.15s ease;
+      transition: filter 0.15s ease, background 0.2s ease;
     }
 
     .btn-primary:hover {
       filter: brightness(0.92);
     }
+
+    .theme-toggle {
+      position: fixed;
+      top: var(--spacing-md);
+      right: var(--spacing-md);
+      background: var(--bg-muted);
+      color: var(--fg-default);
+      border: 1px solid var(--bg-subtle);
+      border-radius: var(--border-radius-sm);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-family: var(--font-families-body);
+      font-size: var(--font-sizes-body);
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      background: var(--bg-subtle);
+    }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <span data-theme-label>🌙 Dark</span>
+  </button>
+
   <div class="stage">
     <h1>Button from design tokens</h1>
     <button class="btn-primary">Primary Button</button>
   </div>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const toggle = document.querySelector('.theme-toggle');
+      const label = toggle.querySelector('[data-theme-label]');
+
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') {
+        root.dataset.theme = saved;
+      }
+      updateLabel();
+
+      toggle.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('theme', next);
+        updateLabel();
+      });
+
+      function updateLabel() {
+        label.textContent = root.dataset.theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+      }
+    })();
+  </script>
 </body>
 </html>

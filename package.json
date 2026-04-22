@@ -13,6 +13,8 @@
   "devDependencies": {
     "@storybook/html-vite": "^8.6.0",
     "@tokens-studio/sd-transforms": "^1.2.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "serve": "^14.2.4",
     "storybook": "^8.6.0",
     "style-dictionary": "^4.2.0",
