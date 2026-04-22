@@ -17,12 +17,35 @@ if (typeof document !== 'undefined' && !document.head.querySelector('style[data-
   document.head.appendChild(tag);
 }
 
+export const globalTypes = {
+  brand: {
+    name: 'Brand',
+    defaultValue: 'brand-a',
+    toolbar: {
+      icon: 'component',
+      items: [
+        { value: 'brand-a', title: 'Brand A' },
+        { value: 'brand-b', title: 'Brand B' }
+      ],
+      showName: true,
+      dynamicTitle: true
+    }
+  }
+};
+
+const withBrand = (storyFn, context) => {
+  const brand = context.globals.brand || 'brand-a';
+  document.documentElement.setAttribute('data-brand', brand);
+  return storyFn();
+};
+
 export const decorators = [
   withThemeByDataAttribute({
-    themes: { light: 'light', dark: 'dark' },
-    defaultTheme: 'light',
+    themes: { Light: 'light', Dark: 'dark' },
+    defaultTheme: 'Light',
     attributeName: 'data-theme'
-  })
+  }),
+  withBrand
 ];
 
 /** @type { import('@storybook/html').Preview } */
