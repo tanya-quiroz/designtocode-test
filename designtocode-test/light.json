@@ -30,7 +30,7 @@
   "accent": {
     "default": {
       "$type": "color",
-      "$value": "{colors.pink.400}"
+      "$value": "{colors.indigo.400}"
     },
     "onAccent": {
       "$type": "color",
