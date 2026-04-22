@@ -17,36 +17,37 @@ if (typeof document !== 'undefined' && !document.head.querySelector('style[data-
   document.head.appendChild(tag);
 }
 
-const withBrand = (storyFn, context) => {
-  const brand = context.globals?.brand || 'brand-a';
+const THEME_VALUES = {
+  'Brand A · Light': 'brand-a:light',
+  'Brand A · Dark':  'brand-a:dark',
+  'Brand B · Light': 'brand-b:light',
+  'Brand B · Dark':  'brand-b:dark',
+};
+
+// Reads the selected label from globals and sets data-brand + data-theme
+const withBrandAndTheme = (storyFn, context) => {
+  const label = context.globals?.theme || 'Brand A · Light';
+  const combo = THEME_VALUES[label] || 'brand-a:light';
+  const [brand, theme] = combo.split(':');
   document.documentElement.setAttribute('data-brand', brand);
+  document.documentElement.setAttribute('data-theme', theme);
   return storyFn();
 };
 
 /** @type { import('@storybook/html').Preview } */
 export default {
-  globalTypes: {
-    brand: {
-      name: 'Brand',
-      defaultValue: 'brand-a',
-      toolbar: {
-        icon: 'component',
-        items: [
-          { value: 'brand-a', title: 'Brand A' },
-          { value: 'brand-b', title: 'Brand B' }
-        ],
-        showName: true,
-        dynamicTitle: true
-      }
-    }
-  },
   decorators: [
     withThemeByDataAttribute({
-      themes: { Light: 'light', Dark: 'dark' },
-      defaultTheme: 'Light',
-      attributeName: 'data-theme'
+      themes: {
+        'Brand A · Light': 'brand-a:light',
+        'Brand A · Dark':  'brand-a:dark',
+        'Brand B · Light': 'brand-b:light',
+        'Brand B · Dark':  'brand-b:dark',
+      },
+      defaultTheme: 'Brand A · Light',
+      attributeName: 'data-combo'
     }),
-    withBrand
+    withBrandAndTheme
   ],
   parameters: {
     controls: {
