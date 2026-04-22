@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build:tokens": "node build-tokens.js",
-    "build:netlify": "npm run build:tokens && rm -rf node_modules/.cache/vite* node_modules/.cache/storybook && storybook build --no-manager-cache --output-dir storybook-static && mkdir -p dist && cp index.html dist/ && cp -r build dist/ && cp -r storybook-static dist/storybook",
+    "build:netlify": "npm run build:tokens && rm -rf node_modules/.cache/vite* node_modules/.cache/storybook && storybook build --output-dir storybook-static && mkdir -p dist && cp index.html dist/ && cp -r build dist/ && cp -r storybook-static dist/storybook",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "serve": "serve .",
