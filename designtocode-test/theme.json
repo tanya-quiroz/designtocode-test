@@ -12,11 +12,15 @@
     },
     "borderRadius": {
       "$type": "borderRadius",
-      "$value": "{borderRadius.lg}"
+      "$value": "{borderRadius.xl}"
     },
     "borderWidth": {
       "$type": "borderWidth",
       "$value": "{dimension.sm}"
+    },
+    "padding": {
+      "$type": "dimension",
+      "$value": "{dimension.md}"
     }
   },
   "card": {
@@ -108,7 +112,7 @@
     "Body": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{fontFamilies.body}",
+        "fontFamily": "Courier New",
         "fontWeight": "{fontWeights.bodyRegular}",
         "lineHeight": "{lineHeights.heading}",
         "fontSize": "{fontSizes.body}",
