@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build:tokens": "node build-tokens.js",
-    "build:netlify": "npm run build:tokens && rm -rf node_modules/.vite node_modules/.cache/storybook && storybook build --output-dir storybook-static && cp -r build storybook-static/token-build && mkdir -p dist && cp index.html dist/ && cp -r build dist/ && cp -r storybook-static dist/storybook",
+    "build:netlify": "npm run build:tokens && rm -rf node_modules/.vite node_modules/.cache/storybook && storybook build --output-dir storybook-static && cp -r build storybook-static/token-build && node -e \"const f='storybook-static/iframe.html',fs=require('fs'),c=fs.readFileSync(f,'utf8');fs.writeFileSync(f,c.replace('</head>','<link rel=\\\"stylesheet\\\" href=\\\"./token-build/variables.css\\\"><link rel=\\\"stylesheet\\\" href=\\\"./token-build/typography.css\\\"></head>'));\" && mkdir -p dist && cp index.html dist/ && cp -r build dist/ && cp -r storybook-static dist/storybook",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "serve": "serve .",
