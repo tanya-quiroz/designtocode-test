@@ -1,0 +1,21 @@
+{
+  "name": "designtocode-test",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:tokens": "node build-tokens.js",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "serve": "serve .",
+    "dev": "npm run build:tokens && npm run serve"
+  },
+  "devDependencies": {
+    "@storybook/html-vite": "^8.6.0",
+    "@tokens-studio/sd-transforms": "^1.2.0",
+    "serve": "^14.2.4",
+    "storybook": "^8.6.0",
+    "style-dictionary": "^4.2.0",
+    "vite": "^5.4.0"
+  }
+}

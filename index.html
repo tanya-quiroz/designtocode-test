@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design-to-Code Button Test</title>
+  <link rel="stylesheet" href="build/variables.css">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f8f9fa;
+    }
+
+    .stage {
+      text-align: center;
+    }
+
+    .stage h1 {
+      margin-bottom: 2rem;
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .btn {
+      background: var(--button-background);
+      color: var(--button-text);
+      border: none;
+      border-radius: var(--button-radius);
+      padding: var(--button-padding-y) var(--button-padding-x);
+      font-size: var(--button-font-size);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--button-background-hover);
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <h1>Button from design tokens</h1>
+    <button class="btn">Primary Button</button>
+  </div>
+</body>
+</html>
