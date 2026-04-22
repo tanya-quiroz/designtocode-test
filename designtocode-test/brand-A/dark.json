@@ -30,7 +30,7 @@
   "accent": {
     "default": {
       "$type": "color",
-      "$value": "{colors.green.600}"
+      "$value": "{colors.orange.600}"
     },
     "onAccent": {
       "$type": "color",
@@ -38,7 +38,7 @@
     },
     "bg": {
       "$type": "color",
-      "$value": "{colors.green.800}"
+      "$value": "{colors.orange.800}"
     }
   },
   "shadows": {
