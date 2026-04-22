@@ -6,22 +6,22 @@ register(StyleDictionary);
 
 const BUILDS = [
   {
-    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/light.json', 'designtocode-test/theme.json'],
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/base.json', 'designtocode-test/brand-A/light.json', 'designtocode-test/theme.json'],
     destination: 'brand-a-light.css',
     selector: ':root, [data-brand="brand-a"][data-theme="light"]'
   },
   {
-    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/dark.json', 'designtocode-test/theme.json'],
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/base.json', 'designtocode-test/brand-A/dark.json', 'designtocode-test/theme.json'],
     destination: 'brand-a-dark.css',
     selector: '[data-brand="brand-a"][data-theme="dark"]'
   },
   {
-    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/light.json', 'designtocode-test/theme.json'],
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/base.json', 'designtocode-test/brand-B/light.json', 'designtocode-test/theme.json'],
     destination: 'brand-b-light.css',
     selector: '[data-brand="brand-b"][data-theme="light"]'
   },
   {
-    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/dark.json', 'designtocode-test/theme.json'],
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/base.json', 'designtocode-test/brand-B/dark.json', 'designtocode-test/theme.json'],
     destination: 'brand-b-dark.css',
     selector: '[data-brand="brand-b"][data-theme="dark"]'
   }
