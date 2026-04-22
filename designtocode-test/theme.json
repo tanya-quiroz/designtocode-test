@@ -112,7 +112,7 @@
     "Body": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "Courier New",
+        "fontFamily": "{fontFamilies.body}",
         "fontWeight": "{fontWeights.bodyRegular}",
         "lineHeight": "{lineHeights.heading}",
         "fontSize": "{fontSizes.body}",
