@@ -38,7 +38,7 @@
     },
     "bg": {
       "$type": "color",
-      "$value": "{colors.indigo.200}"
+      "$value": "{colors.pink.200}"
     }
   },
   "shadows": {
