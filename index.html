@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-brand="brand-a" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +18,45 @@
       transition: background 0.2s ease, color 0.2s ease;
     }
 
+    /* Controls bar */
+    .controls {
+      position: fixed;
+      top: var(--spacing-md);
+      right: var(--spacing-md);
+      display: flex;
+      gap: var(--spacing-xs);
+      align-items: center;
+    }
+
+    .control-btn {
+      background: var(--bg-muted);
+      color: var(--fg-default);
+      border: 1px solid var(--bg-subtle);
+      border-radius: var(--border-radius-sm);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-family: var(--font-families-body);
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.2s ease;
+    }
+
+    .control-btn:hover {
+      background: var(--bg-subtle);
+    }
+
+    .control-btn[aria-pressed="true"] {
+      background: var(--accent-default);
+      color: var(--accent-on-accent);
+      border-color: var(--accent-default);
+    }
+
+    .divider {
+      width: 1px;
+      height: 24px;
+      background: var(--bg-subtle);
+    }
+
+    /* Button */
     .stage {
       text-align: center;
     }
@@ -41,30 +80,16 @@
     .btn-primary:hover {
       filter: brightness(0.92);
     }
-
-    .theme-toggle {
-      position: fixed;
-      top: var(--spacing-md);
-      right: var(--spacing-md);
-      background: var(--bg-muted);
-      color: var(--fg-default);
-      border: 1px solid var(--bg-subtle);
-      border-radius: var(--border-radius-sm);
-      padding: var(--spacing-xs) var(--spacing-sm);
-      font-family: var(--font-families-body);
-      font-size: var(--font-sizes-body);
-      cursor: pointer;
-    }
-
-    .theme-toggle:hover {
-      background: var(--bg-subtle);
-    }
   </style>
 </head>
 <body>
-  <button class="theme-toggle" type="button" aria-label="Toggle theme">
-    <span data-theme-label>🌙 Dark</span>
-  </button>
+  <nav class="controls" aria-label="Theme controls">
+    <button class="control-btn" data-brand-btn="brand-a" aria-pressed="true">Brand A</button>
+    <button class="control-btn" data-brand-btn="brand-b" aria-pressed="false">Brand B</button>
+    <div class="divider" role="separator"></div>
+    <button class="control-btn" data-theme-btn="light" aria-pressed="true">☀️ Light</button>
+    <button class="control-btn" data-theme-btn="dark" aria-pressed="false">🌙 Dark</button>
+  </nav>
 
   <div class="stage">
     <h1 class="typography-h1-bold">Button from design tokens</h1>
@@ -74,25 +99,37 @@
   <script>
     (() => {
       const root = document.documentElement;
-      const toggle = document.querySelector('.theme-toggle');
-      const label = toggle.querySelector('[data-theme-label]');
 
-      const saved = localStorage.getItem('theme');
-      if (saved === 'light' || saved === 'dark') {
-        root.dataset.theme = saved;
+      const saved = JSON.parse(localStorage.getItem('dtc-prefs') || '{}');
+      if (saved.brand) root.dataset.brand = saved.brand;
+      if (saved.theme) root.dataset.theme = saved.theme;
+
+      function updateButtons() {
+        document.querySelectorAll('[data-brand-btn]').forEach(btn => {
+          btn.setAttribute('aria-pressed', btn.dataset.brandBtn === root.dataset.brand);
+        });
+        document.querySelectorAll('[data-theme-btn]').forEach(btn => {
+          btn.setAttribute('aria-pressed', btn.dataset.themeBtn === root.dataset.theme);
+        });
       }
-      updateLabel();
 
-      toggle.addEventListener('click', () => {
-        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-        root.dataset.theme = next;
-        localStorage.setItem('theme', next);
-        updateLabel();
+      updateButtons();
+
+      document.querySelectorAll('[data-brand-btn]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          root.dataset.brand = btn.dataset.brandBtn;
+          localStorage.setItem('dtc-prefs', JSON.stringify({ brand: root.dataset.brand, theme: root.dataset.theme }));
+          updateButtons();
+        });
       });
 
-      function updateLabel() {
-        label.textContent = root.dataset.theme === 'dark' ? '☀️ Light' : '🌙 Dark';
-      }
+      document.querySelectorAll('[data-theme-btn]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          root.dataset.theme = btn.dataset.themeBtn;
+          localStorage.setItem('dtc-prefs', JSON.stringify({ brand: root.dataset.brand, theme: root.dataset.theme }));
+          updateButtons();
+        });
+      });
     })();
   </script>
 </body>

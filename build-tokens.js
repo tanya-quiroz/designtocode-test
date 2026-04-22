@@ -4,59 +4,58 @@ import { readFile, writeFile } from 'node:fs/promises';
 
 register(StyleDictionary);
 
+const BUILDS = [
+  {
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/light.json', 'designtocode-test/theme.json'],
+    destination: 'brand-a-light.css',
+    selector: ':root, [data-brand="brand-a"][data-theme="light"]'
+  },
+  {
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-A/dark.json', 'designtocode-test/theme.json'],
+    destination: 'brand-a-dark.css',
+    selector: '[data-brand="brand-a"][data-theme="dark"]'
+  },
+  {
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/light.json', 'designtocode-test/theme.json'],
+    destination: 'brand-b-light.css',
+    selector: '[data-brand="brand-b"][data-theme="light"]'
+  },
+  {
+    sources: ['designtocode-test/core.json', 'designtocode-test/brand-B/dark.json', 'designtocode-test/theme.json'],
+    destination: 'brand-b-dark.css',
+    selector: '[data-brand="brand-b"][data-theme="dark"]'
+  }
+];
+
 async function buildTheme({ sources, destination, selector }) {
   const sd = new StyleDictionary({
     source: sources,
     preprocessors: ['tokens-studio'],
     expand: {
-      typesMap: {
-        typography: true,
-        boxShadow: true,
-        border: true
-      }
+      typesMap: { typography: true, boxShadow: true, border: true }
     },
     platforms: {
       css: {
         transformGroup: 'tokens-studio',
         transforms: ['name/kebab'],
         buildPath: 'build/',
-        files: [
-          {
-            destination,
-            format: 'css/variables',
-            options: { selector }
-          }
-        ]
+        files: [{ destination, format: 'css/variables', options: { selector } }]
       }
     }
   });
   await sd.buildAllPlatforms();
 }
 
-await buildTheme({
-  sources: [
-    'designtocode-test/core.json',
-    'designtocode-test/light.json',
-    'designtocode-test/theme.json'
-  ],
-  destination: 'light.css',
-  selector: ':root, [data-theme="light"]'
-});
+for (const build of BUILDS) {
+  await buildTheme(build);
+}
 
-await buildTheme({
-  sources: [
-    'designtocode-test/core.json',
-    'designtocode-test/dark.json',
-    'designtocode-test/theme.json'
-  ],
-  destination: 'dark.css',
-  selector: '[data-theme="dark"]'
-});
+const chunks = await Promise.all(
+  BUILDS.map(({ destination }) => readFile(`build/${destination}`, 'utf8'))
+);
+await writeFile('build/variables.css', chunks.join('\n'));
 
-const light = await readFile('build/light.css', 'utf8');
-const dark = await readFile('build/dark.css', 'utf8');
-await writeFile('build/variables.css', `${light}\n${dark}`);
-
+// Typography utility classes (shared — theme.json is brand-agnostic)
 const toKebab = (s) =>
   s.replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/[\s_]+/g, '-').toLowerCase();
 
@@ -98,5 +97,5 @@ for (const { path, value } of typographyTokens) {
 }
 await writeFile('build/typography.css', classLines.join('\n'));
 
-console.log(`✓ Tokens built → build/variables.css (light + dark)`);
+console.log(`✓ Tokens built → build/variables.css (4 themes: brand-a/b × light/dark)`);
 console.log(`✓ Typography classes → build/typography.css (${typographyTokens.length} classes)`);
