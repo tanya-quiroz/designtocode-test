@@ -1,8 +1,11 @@
 {
   "tokenSetOrder": [
     "core",
-    "light",
-    "dark",
-    "theme"
+    "brand-A/base",
+    "brand-A/light",
+    "brand-A/dark",
+    "brand-B/base",
+    "brand-B/light",
+    "brand-B/dark"
   ]
 }
