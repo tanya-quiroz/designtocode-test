@@ -5,7 +5,8 @@ const config = {
   framework: {
     name: '@storybook/html-vite',
     options: {}
-  }
+  },
+  staticDirs: [{ from: '../build', to: '/token-build' }]
 };
 
 export default config;
