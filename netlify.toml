@@ -1,6 +1,15 @@
 [build]
   command = "npm run build:netlify"
   publish = "dist"
-
+ 
 [build.environment]
   NODE_VERSION = "20"
+ 
+# Trigger a new deploy when the GitHub Action commits built CSS to main.
+# Netlify watches the repo and redeploys on every push to main,
+# so this happens automatically — no extra config needed.
+# The line below just makes that intent explicit and documents it.
+ 
+# If you ever want to SKIP a Netlify deploy for a specific commit,
+# add [skip netlify] to the commit message instead of [skip ci].
+ 
