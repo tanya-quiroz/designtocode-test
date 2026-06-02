@@ -3,7 +3,6 @@
     "scale": {
       "$type": "dimension",
       "$value": "2"
-      "$description": "testing changes"
     },
     "xs": {
       "$type": "dimension",
