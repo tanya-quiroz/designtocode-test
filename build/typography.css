@@ -1,0 +1,47 @@
+/**
+ * Typography utility classes — auto-generated from theme.json
+ */
+
+.typography-h1-bold {
+  font-family: var(--typography-h1-bold-font-family);
+  font-weight: var(--typography-h1-bold-font-weight);
+  line-height: var(--typography-h1-bold-line-height);
+  font-size: var(--typography-h1-bold-font-size);
+  margin-bottom: var(--typography-h1-bold-paragraph-spacing);
+  letter-spacing: var(--typography-h1-bold-letter-spacing);
+}
+
+.typography-h1-regular {
+  font-family: var(--typography-h1-regular-font-family);
+  font-weight: var(--typography-h1-regular-font-weight);
+  line-height: var(--typography-h1-regular-line-height);
+  font-size: var(--typography-h1-regular-font-size);
+  margin-bottom: var(--typography-h1-regular-paragraph-spacing);
+  letter-spacing: var(--typography-h1-regular-letter-spacing);
+}
+
+.typography-h2-bold {
+  font-family: var(--typography-h2-bold-font-family);
+  font-weight: var(--typography-h2-bold-font-weight);
+  line-height: var(--typography-h2-bold-line-height);
+  font-size: var(--typography-h2-bold-font-size);
+  margin-bottom: var(--typography-h2-bold-paragraph-spacing);
+  letter-spacing: var(--typography-h2-bold-letter-spacing);
+}
+
+.typography-h2-regular {
+  font-family: var(--typography-h2-regular-font-family);
+  font-weight: var(--typography-h2-regular-font-weight);
+  line-height: var(--typography-h2-regular-line-height);
+  font-size: var(--typography-h2-regular-font-size);
+  margin-bottom: var(--typography-h2-regular-paragraph-spacing);
+  letter-spacing: var(--typography-h2-regular-letter-spacing);
+}
+
+.typography-body {
+  font-family: var(--typography-body-font-family);
+  font-weight: var(--typography-body-font-weight);
+  line-height: var(--typography-body-line-height);
+  font-size: var(--typography-body-font-size);
+  margin-bottom: var(--typography-body-paragraph-spacing);
+}
