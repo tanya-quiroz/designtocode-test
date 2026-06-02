@@ -335,7 +335,7 @@
   --font-sizes-body: 16px;
   --font-sizes-sm: 13.6px;
   --font-sizes-xs: 10.4px;
-  --button-primary-background: #805ad5;
+  --button-primary-background: #3182ce;
   --button-primary-text: #ffffff;
   --button-border-radius: 16px;
   --button-border-width: 8px;
@@ -390,9 +390,9 @@
   --bg-default: #1a202c;
   --bg-muted: #4a5568;
   --bg-subtle: #718096;
-  --accent-default: #805ad5;
+  --accent-default: #3182ce;
   --accent-on-accent: #ffffff;
-  --accent-bg: #553c9a;
+  --accent-bg: #2c5282;
   --shadows-default: rgba(0, 0, 0, 0.3);
 }
 
